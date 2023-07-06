@@ -44,6 +44,9 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
+        ],[
+            'name.required'=>'Name must be provided',
+            'description.required'=>'Description also be provided'
         ]);
 
         // dd($request->all());
