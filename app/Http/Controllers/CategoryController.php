@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryFormRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -61,7 +62,15 @@ class CategoryController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('categories.index');
+        // option: 1
+        // $request->session()->flash('success', 'Category Created successful!');
+        // option: 2
+        // session()->flash('success', 'Category Created successful!');
+        // option: 3
+        // Session::flash('success', 'Category Created successful!');
+        // return redirect()->route('categories.index');
+        // option: 4
+        return redirect()->route('categories.index')->with('success', 'Category Created successful!');
     }
 
     /**
@@ -135,6 +144,7 @@ class CategoryController extends Controller
 
         // option: 4
         $category->update($request->all());
+        $request->session()->flash('success', 'Data Updated Successfull');
         return redirect()->route('categories.index');
     }
 

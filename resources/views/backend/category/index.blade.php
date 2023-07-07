@@ -6,6 +6,28 @@
     </div>
     <div class="row">
         <div class="col-md-12 mx-auto">
+
+            {{-- option: 1 --}}
+            {{-- @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif --}}
+
+            {{-- option: 2 --}}
+            {{-- @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif --}}
+
+            {{-- option: 3 --}}
+            @if (Session::has('success'))
+                <div class="alert alert-success" id="alert">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+
             <h3 class="mb-3">Show Categories</h1>
                 <table class="table">
                     <thead>
